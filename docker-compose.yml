@@ -26,6 +26,20 @@ services:
     ports:
       - 3000:3000
 
+  consul:
+    image: consul
+    ports:
+      - "8500:8500"
+    networks:
+      - backend
+      - frontend
+  node-exporter-1:
+    image: prom/node-exporter:v0.18.1
+    ports:
+      - "9100:9100"
+    networks:
+      - backend
+
 networks:
   frontend:
   backend:

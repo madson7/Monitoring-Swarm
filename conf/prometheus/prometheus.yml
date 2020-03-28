@@ -11,3 +11,8 @@ scrape_configs:
     scrape_interval: 1s
     static_configs:
          - targets: ['localhost:9090']
+  
+  - job_name: 'consul-services'
+      scrape_interval: 1s
+      consul_sd_configs:
+        - server: 'localhost:8500'
