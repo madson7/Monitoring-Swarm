@@ -35,3 +35,8 @@ Usando
 ```
 # docker service ls
 ```
+
+## Adicionando Node ao Consul
+```
+http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-exporter-1.json
+```

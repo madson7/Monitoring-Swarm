@@ -33,10 +33,18 @@ services:
     networks:
       - backend
       - frontend
-  node-exporter-1:
+
+  node-exporter-0:
     image: prom/node-exporter:v0.18.1
     ports:
       - "9100:9100"
+    networks:
+      - backend
+
+  node-exporter-1:
+    image: prom/node-exporter:v0.18.1
+    ports:
+      - "9101:9100"
     networks:
       - backend
 
