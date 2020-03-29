@@ -12,7 +12,10 @@ scrape_configs:
     static_configs:
          - targets: ['localhost:9090']
 
-  - job_name: 'consul'
+  - job_name: 'consul-services'
     scrape_interval: 1s
     consul_sd_configs:
-    - server: 'localhost:8500'
+    - server: 'consul:8500'
+    - souce_labels: ['__meta_consul_service_id']
+      action: drop
+      regex: consul
