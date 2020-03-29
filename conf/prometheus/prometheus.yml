@@ -16,6 +16,7 @@ scrape_configs:
     scrape_interval: 1s
     consul_sd_configs:
     - server: 'consul:8500'
-    - souce_labels: ['__meta_consul_service_id']
+    relabel_configs:
+    - source_labels: ['__meta_consul_service_id']
       action: drop
       regex: consul
