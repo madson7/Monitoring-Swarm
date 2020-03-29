@@ -3,9 +3,11 @@
 Ferramentas de monitoramento de containers e serviços
 
 Usando
+- Mikrotik
 - Docker
+- Node export
+- Consul
 - Prometheus
-- Node exports
 - Grafana
 
 # CMD
@@ -36,7 +38,21 @@ Usando
 # docker service ls
 ```
 
+## Iniciar o Node do Mikrotik
+```
+# ./mikrotik-exporter -address 192.168.0.10 -device rot1 -password 12345678 -user prometheus
+```
+Onde -address é o endereço do seu mikrotik. -device é o nome do rótulo do dispositivo na saída de métricas para o prometheus. O usuário e senha deve ser criadas no seu mikrotik
+
 ## Adicionando Node ao Consul
 ```
-http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-exporter-1.json
+# vi /conf/consul/node/node-mk-01.json
+{
+    "name": "mk 01",
+    "address": "O IP onde está rodando o mikrotik-exporter",
+    "port": 9436
+}
+
+Mikrotik 01
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-mk-01.json
 ```
