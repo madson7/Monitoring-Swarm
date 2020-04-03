@@ -1,11 +1,14 @@
-# monitor-discovery
+# Monitor-Discovery
 
-Ferramentas de monitoramento de containers e serviços
+![](img/Server.png)
 
-Usando
+Ferramentas de monitoramento de hosts, containers e serviços
+
 - Mikrotik
-- Docker
 - Node export
+- Netdata
+- Docker
+- Cadvisor
 - Consul
 - Prometheus
 - Grafana
@@ -45,14 +48,20 @@ Usando
 Onde -address é o endereço do seu mikrotik. -device é o nome do rótulo do dispositivo na saída de métricas para o prometheus. O usuário e senha deve ser criadas no seu mikrotik
 
 ## Adicionando Node ao Consul
+conf/consul/node/*.json
 ```
-# vi /conf/consul/node/node-mk-01.json
 {
-    "name": "mk 01",
-    "address": "O IP onde está rodando o mikrotik-exporter",
-    "port": 9436
+    "name": "Nome do serviço",
+    "address": "O IP onde está rodando",
+    "port": Pota de serviço
 }
 
 Mikrotik 01
 # http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-mk-01.json
+
+Cadvisor 01
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-cadvisor-01.json
+
+Netedata 01
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-netdata-01.json
 ```

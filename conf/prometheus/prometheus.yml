@@ -20,19 +20,3 @@ scrape_configs:
     - source_labels: ['__meta_consul_service_id']
       action: drop
       regex: consul
-
-  - job_name: 'netdata'
-    metrics_path: '/api/v1/allmetrics'
-    params:
-      format: [prometheus]
-    honor_labels: true
-    scrape_interval: 1s
-    static_configs:
-         - targets: ['jacare.tech:19999']
-
-  - job_name: 'cadvisor'
-    dns_sd_configs:
-    - names:
-      - 'tasks.cadvisor'
-      type: 'A'
-      port: 8080
