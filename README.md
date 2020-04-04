@@ -1,19 +1,20 @@
 # Monitor-Discovery
-![](img/Server.png)
+
+![](img/schema.png)
 
 Ferramentas de monitoramento de hosts, containers e serviços
 
-- Mikrotik
-- Server Linux
-- Node exporter
-- Netdata
+- Node Exporter's
 - Docker
 - Cadvisor
 - Consul
 - Prometheus
 - Grafana
 
-![](img/Fluxo.png)
+Infraestrutura
+
+- Mikrotik
+- Server Linux
 
 Instalação do Docker e iniciando o cluster Swarm
 ```
@@ -28,7 +29,7 @@ Clonado o repositório monitor-discovery
 # cd monitor-discovery
 ```
 
-Build de imagen do promotheus
+Build de imagen do Promotheus
 ```
 # docker build -t madson7/prometheus_alpine ./dockerfiles/prometheus
 ```
@@ -45,12 +46,18 @@ Status dos serviços
 
 Iniciar o Node do Mikrotik
 ```
-# ./mikrotik-exporter -address 192.168.0.10 -device rot1 -password 12345678 -user prometheus
+# ./conf/node/mikrotik-exporter -address 192.168.0.10 -device rot1 -password 12345678 -user prometheus
 ```
 Onde -address é o endereço do seu mikrotik. -device é o nome do rótulo do dispositivo na saída de métricas para o prometheus. O usuário e senha deve ser criadas no seu mikrotik
 
+Iniciar o Node do Linux
+```
+# ./conf/node/node_exporter --web.listen-address=":9101"
+```
+Onde --web.listen-address=":9101" é a porta do seu servidor Linux local.
+
 Adicionando Node ao Consul
-conf/consul/node/*.json
+conf/consul/*.json
 ```
 {
     "name": "Nome do serviço",
@@ -59,11 +66,11 @@ conf/consul/node/*.json
 }
 
 Mikrotik 01
-# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-mk-01.json
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/mk-01.json
 
 Cadvisor 01
-# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-cadvisor-01.json
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/cadvisor-01.json
 
 Netedata 01
-# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/node/node-netdata-01.json
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/linux-01.json
 ```
