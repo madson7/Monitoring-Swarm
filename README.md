@@ -66,11 +66,11 @@ conf/consul/*.json
 }
 
 Mikrotik 01
-# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/mk-01.json
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/mikrotik-01.json
 
 Cadvisor 01
 # http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/cadvisor-01.json
 
-Netedata 01
+Server Linux 01
 # http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/linux-01.json
 ```
