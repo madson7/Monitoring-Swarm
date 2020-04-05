@@ -46,7 +46,7 @@ Status dos serviços
 
 Iniciar o Node do Mikrotik
 ```
-# ./conf/node/mikrotik-exporter -address 192.168.0.10 -device rot1 -password 12345678 -user prometheus
+# ./conf/node/mikrotik-exporter -address 192.168.0.10 -device "Mikrotik 01" -password 12345678 -user prometheus
 ```
 Onde -address é o endereço do seu mikrotik. -device é o nome do rótulo do dispositivo na saída de métricas para o prometheus. O usuário e senha deve ser criadas no seu mikrotik
 
@@ -74,3 +74,6 @@ Cadvisor 01
 Server Linux 01
 # http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/linux-01.json
 ```
+# Rultado
+
+![](img/result.png)

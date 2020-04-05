@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 9,
+  "id": 4,
   "links": [],
   "panels": [
     {
@@ -85,7 +85,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(container_last_seen{image!=\"\"})",
+          "expr": "count(node_context_switches_total)+count(mikrotik_system_uptime)",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -94,7 +94,7 @@
       "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "Total de container",
+      "title": "Total de node exporter's",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -121,6 +121,7 @@
             "lastNotNull"
           ],
           "defaults": {
+            "decimals": 2,
             "mappings": [],
             "max": 100,
             "min": 0,
@@ -184,8 +185,110 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Panel Title",
+      "title": "Uso de CPU por node",
       "type": "gauge"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "decimals": 2,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "hiddenSeries": false,
+      "id": 13,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "hideEmpty": false,
+        "hideZero": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "mikrotik_system_total_memory-(mikrotik_system_total_memory-mikrotik_system_free_memory)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        },
+        {
+          "expr": "node_memory_MemTotal_bytes-(node_memory_MemTotal_bytes-node_memory_MemFree_bytes)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Uso de memória por node",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 2,
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "cacheTimeout": null,
@@ -211,7 +314,7 @@
         "h": 5,
         "w": 4,
         "x": 0,
-        "y": 5
+        "y": 11
       },
       "id": 20,
       "interval": null,
@@ -280,7 +383,7 @@
         "h": 5,
         "w": 20,
         "x": 4,
-        "y": 5
+        "y": 11
       },
       "id": 17,
       "options": {
@@ -331,7 +434,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Usor de CPU",
+      "title": "Uso de CPU por contêiner",
       "type": "gauge"
     },
     {
@@ -347,10 +450,10 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 16
       },
       "hiddenSeries": false,
-      "id": 13,
+      "id": 21,
       "legend": {
         "alignAsTable": true,
         "avg": false,
@@ -388,7 +491,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Memory Usage by Container",
+      "title": "Uso de memória por contêiner",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -459,5 +562,5 @@
   "variables": {
     "list": []
   },
-  "version": 20
+  "version": 18
 }
