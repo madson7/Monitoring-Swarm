@@ -1,0 +1,58 @@
+version: '3.3'
+
+services:
+
+  prometheus:
+    image: madson7/prometheus_alpine
+    volumes:
+      - ./conf/prometheus/:/etc/prometheus/
+      - prometheus_data:/var/lib/prometheus
+    networks:
+      - backend
+    ports:
+      - 9090:9090
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - ./conf/grafana/grafana.config
+    networks:
+      - backend
+      - frontend
+    ports:
+      - 3000:3000
+
+  consul:
+    image: consul
+    ports:
+      - "8500:8500"
+    networks:
+      - backend
+      - frontend
+  cadvisor:
+    image: google/cadvisor
+    hostname: '{{.Node.ID}}'
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - backend
+    deploy:
+      mode: global
+    ports:
+      - 8080:8080
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+    prometheus_data:
+    grafana_data:
