@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -95,7 +95,7 @@
       "options": {
         "fieldOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "defaults": {
             "decimals": 2,
