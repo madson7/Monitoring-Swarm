@@ -46,7 +46,7 @@ Status dos serviços
 
 Iniciar o Node do Mikrotik
 ```
-# ./conf/node/mikrotik-exporter -address 192.168.0.10 -device "Mikrotik 01" -password 12345678 -user prometheus
+# ./conf/node/mikrotik_exporter -address 192.168.0.10 -device "Mikrotik 01" -password 12345678 -user prometheus
 ```
 Onde -address é o endereço do seu mikrotik. -device é o nome do rótulo do dispositivo na saída de métricas para o prometheus. O usuário e senha deve ser criadas no seu mikrotik
 
@@ -55,6 +55,12 @@ Iniciar o Node do Linux
 # ./conf/node/node_exporter --web.listen-address=":9101"
 ```
 Onde --web.listen-address=":9101" é a porta do seu servidor Linux local.
+
+Iniciar o Ping Exporter
+```
+# ./conf/node/ping_exporter --config.path conf/ping/ping.yml --web.listen-address=":9102"
+```
+Onde --web.listen-address=":9102" é a porta do seu servidor Linux local e --config.path são os IP's e sites.
 
 Adicionando Node ao Consul
 conf/consul/*.json
@@ -73,6 +79,9 @@ Cadvisor 01
 
 Server Linux 01
 # http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/linux-01.json
+
+Latência
+# http PUT http://localhost:8500/v1/agent/service/register < ./conf/consul/ping.json
 ```
 # Rultado
 
