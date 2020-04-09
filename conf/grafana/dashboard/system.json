@@ -16,9 +16,203 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 3,
   "links": [],
   "panels": [
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "decimals": 1,
+      "format": "bytes",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 29,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false,
+        "ymax": null,
+        "ymin": null
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "sum(node_filesystem_free_bytes{instance=~\"34.66.70.236:9101\", device=~\"/dev/.*\"})",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Disco Livre",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 7,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 20,
+        "x": 4,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 31,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 350,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Total",
+          "color": "#1F60C4",
+          "fill": 2
+        },
+        {
+          "alias": "Root /",
+          "color": "#E02F44"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "node_filesystem_size_bytes{instance=~\"34.66.70.236:9101\", mountpoint=\"/\"} - node_filesystem_avail_bytes{instance=~\"34.66.70.236:9101\", mountpoint=\"/\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Root {{mountpoint}}",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(node_filesystem_size_bytes{instance=~\"34.66.70.236:9101\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Total",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Panel Title",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
     {
       "cacheTimeout": null,
       "datasource": null,
@@ -26,7 +220,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 8
       },
       "id": 15,
       "links": [],
@@ -72,9 +266,9 @@
           "refId": "B"
         },
         {
-          "expr": "count(ping_loss_percent)/4",
+          "expr": "count(ping_loss_percent)",
           "interval": "",
-          "legendFormat": "Node exporter serviço",
+          "legendFormat": "Ping, Pacotes e Latência de serviços",
           "refId": "C"
         }
       ],
@@ -89,7 +283,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 14
       },
       "id": 19,
       "options": {
@@ -132,10 +326,10 @@
       "repeat": null,
       "targets": [
         {
-          "expr": "(((count(count(node_cpu_seconds_total{instance=\"34.95.145.95:9101\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=\"34.95.145.95:9101\"}[5m])))) * 100) / count(count(node_cpu_seconds_total{instance=\"34.95.145.95:9101\"}) by (cpu))",
+          "expr": "(((count(count(node_cpu_seconds_total{instance=\"34.66.70.236:9101\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=\"34.66.70.236:9101\"}[5m])))) * 100) / count(count(node_cpu_seconds_total{instance=\"34.66.70.236:9101\"}) by (cpu))",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{34.95.145.95:9101}}",
+          "legendFormat": "{{34.66.70.236:9101}}",
           "refId": "A"
         },
         {
@@ -178,7 +372,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 19
       },
       "hiddenSeries": false,
       "id": 13,
@@ -291,7 +485,7 @@
         "h": 5,
         "w": 4,
         "x": 0,
-        "y": 17
+        "y": 25
       },
       "id": 20,
       "interval": null,
@@ -360,7 +554,7 @@
         "h": 5,
         "w": 20,
         "x": 4,
-        "y": 17
+        "y": 25
       },
       "id": 17,
       "options": {
@@ -402,7 +596,7 @@
       "pluginVersion": "6.7.2",
       "targets": [
         {
-          "expr": "rate(container_cpu_user_seconds_total{instance=\"34.95.145.95:8080\",image!=\"\"}[5m]) * 100",
+          "expr": "rate(container_cpu_user_seconds_total{instance=\"34.66.70.236:8080\",image!=\"\"}[5m]) * 100",
           "hide": false,
           "interval": "",
           "legendFormat": "{{container_label_com_docker_swarm_service_name}}",
@@ -427,7 +621,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 30
       },
       "hiddenSeries": false,
       "id": 21,
@@ -458,7 +652,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{instance=\"34.95.145.95:8080\",image!=\"\"}",
+          "expr": "container_memory_usage_bytes{instance=\"34.66.70.236:8080\",image!=\"\"}",
           "interval": "",
           "legendFormat": "{{container_label_com_docker_swarm_service_name}}",
           "refId": "A"
@@ -519,7 +713,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 23,
@@ -629,7 +823,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 36
       },
       "hiddenSeries": false,
       "id": 25,
@@ -728,7 +922,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 36
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 26,
@@ -838,7 +1032,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 36
+        "y": 44
       },
       "hiddenSeries": false,
       "id": 27,
@@ -957,5 +1151,5 @@
   "variables": {
     "list": []
   },
-  "version": 2
+  "version": 6
 }

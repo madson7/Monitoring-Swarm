@@ -1,11 +1,42 @@
 targets:
+  # MOBILE LEGEND Servidor de Miame
+  - 157.240.222.61 # Entrando no jogo
+  - 192.221.253.120 # Carregando
+  - 189.6.45.8 # Andes de começar
+  - 128.1.75.130 # Jogando
+
+  # FREEFIRE
+  - 169.46.82.162 # Entrando no jogo
+  - 200.157.208.248 # Carregando 
+  - 143.92.126.168 # Antes de começar
+  - 143.92.125.225 # Maior trafego
+  - 169.57.181.176 # Durante o jogo
+  - 169.57.181.177 # Durante o jogo
+  - 143.92.126.67 # Durante
+
+  # CS GO
+  - 205.185.194.196 # Durante o jogo, maior tráfego
+  - 155.133.249.197 # Durante o jogo
+
+  # DOTA 2
+  - 204.154.111.122
+  - 205.185.194.213 # Port 27017
+  - 162.159.136.234 # https ping 
+  - 162.254.195.67 # https
+  - 104.104.153.143 # Ping 
+  - 23.65.134.160 # Ping
+
+  # PUBG
   - 169.57.199.205
   - 150.109.27.214
   - 49.51.42.110
   - 201.159.159.129
+
+  # Redes sociais
   - facebook.com
   - twitter.com
-  
+  - instagram.com
+
 dns:
   refresh: 2m15s
   nameserver: 8.8.8.8
