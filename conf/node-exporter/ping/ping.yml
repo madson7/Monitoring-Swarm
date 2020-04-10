@@ -36,6 +36,16 @@ targets:
   - facebook.com
   - twitter.com
   - instagram.com
+  - whatsapp.com
+  - linkedin.com
+
+  # Google
+  - mail.google.com
+  - youtube.com
+  - photos.google.com
+  - drive.google.com
+  - docs.google.com
+  - blogger.com
 
 dns:
   refresh: 2m15s
