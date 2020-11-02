@@ -1,4 +1,4 @@
-# Monitor-Discovery
+# Monitoring-Swarm
  
 ![](img/schema.png)
  
